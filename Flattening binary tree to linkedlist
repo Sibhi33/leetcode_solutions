@@ -1,0 +1,19 @@
+public class Solution {
+public TreeNode flatten(TreeNode a) {
+if(a==null) {
+return null;
+}
+TreeNode left = flatten(a.left);
+TreeNode right = flatten(a.right);
+if(left!=null) {
+TreeNode leftHead = left;
+while(left.right!=null) {
+left = left.right;
+}
+left.right = a.right;
+a.right = leftHead;
+a.left = null;
+}
+return a;
+}
+}
