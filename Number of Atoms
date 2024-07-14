@@ -1,0 +1,69 @@
+class Solution {
+    bool iscapital(char &c){
+        return (c>='A'&&c<='Z');
+    }
+    bool isno(char &c){
+        return (c>='0'&&c<='9');
+    }
+    bool ischaracter(char &c){
+        return (c>='a'&&c<='z');
+    }
+    string getelement(int &i, string &formula){
+        string res=""; int n = formula.size();
+        res.push_back(formula[i]); i++;
+        while(i<n&&ischaracter(formula[i])){
+            res.push_back(formula[i]);
+            i++;
+        }
+        return res;
+    }
+    int getno(int &i, string&formula){
+        string no = ""; int n = formula.size();
+        while(i<n&&isno(formula[i])){
+            no.push_back(formula[i]); i++;
+        }
+        if(no.size()) return stoi(no);
+        return 1;
+    }
+    void addmap(stack<map<string,int>>&s){
+        map<string,int>mp;
+        s.push(mp);
+    }
+    void removemap(stack<map<string,int>>&s,int no){
+        map<string,int>mp = s.top();
+        s.pop();
+        for(auto&[k,v]:mp){
+            s.top()[k]+=(v*no);
+        }
+    }
+public:
+    string countOfAtoms(string formula) {
+        stack<map<string,int>>s;
+        int n= formula.size();
+        int i = 0;
+        map<string,int>f; s.push(f);
+        while(i<n){
+            if(iscapital(formula[i])){
+                string element = getelement(i,formula);
+                int no = getno(i,formula);
+                s.top()[element]+=no;
+            }
+            if(formula[i]=='('){
+                addmap(s);i++;
+            }
+            else if(formula[i]==')'){
+                i++;
+                int no = getno(i,formula);
+                removemap(s,no);
+            }
+        }
+        string ans = "";
+        for(auto&[k,v]:s.top()){
+            ans+=k;
+            if(v>1){
+                ans+=to_string(v);
+            }
+        }
+        return ans;
+    }
+};
