@@ -1,0 +1,21 @@
+
+/**
+ * @param {number[]} target
+ * @param {number[]} arr
+ * @return {boolean}
+ */
+var canBeEqual = function(target, arr) {
+    return target.sort((a, b) => a-b).toString() == arr.sort((a, b)=> a-b).toString()
+   //ALTERNATIVE APPROCH
+
+    // for(let val of arr){
+    //     if(!target.includes(val)) return false
+    //     else{ 
+    //         let removeVal = target.indexOf(val);
+    //         target.splice(removeVal, 1 )
+    // }
+    // }
+    // return true
+
+
+};
