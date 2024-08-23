@@ -1,0 +1,35 @@
+bool shouldswap(vector<int>&a, int start, int curr){
+for(int i=start;i<curr;i++){
+if(a[i]==a[curr]){
+return false;
+}
+}
+return true;
+}
+
+//helper function that uses backtracking
+
+void h(vector<vector<int>> &ans, vector<int> &temp, vector<int>&a, int start, int end){
+if(start==end){
+ans.push_back(a);
+return;
+}
+for(int i=start;i<=end;i++){
+if(shouldswap(a,start,i)){
+swap(a[start],a[i]);
+h(ans,temp,a,start+1,end);
+swap(a[start],a[i]);
+}
+
+}
+return;
+}
+
+
+vector<vector<int> > Solution::permute(vector<int> &A) {
+vector <vector<int>> ans;
+vector<int> temp;
+int l=A.size();
+h(ans,temp,A,0,l-1);
+return ans;
+}
