@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+#include <unordered_set>
+#include <algorithm>
+
+class Solution {
+public:
+    int longestSquareStreak(std::vector<int>& nums) {
+        int max = -1;
+        std::unordered_set<int> numSet(nums.begin(), nums.end());
+        std::vector<int> sortedNums(numSet.begin(), numSet.end());
+        
+        std::sort(sortedNums.begin(), sortedNums.end());
+        
+        for (int num : sortedNums) {
+            int curr = num;
+            int count = 0;
+            
+            while (numSet.count(curr)) {
+                numSet.erase(curr);
+                curr *= curr;
+                count++;
+            }
+            
+            max = std::max(max, count);
+        }
+        
+        return max > 1 ? max : -1;
+    }
+};
