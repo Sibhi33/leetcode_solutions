@@ -1,0 +1,42 @@
+Problem statement
+You are given an integer ‘N,’ and your task is to find the minimum steps to reach from 1 to 'N'. There are also ‘M’ mines on which you can not move.
+In each step, you can move in the following way:
+1 - You move either 1 or 2 steps forward.
+
+2 - Whenever you are at a prime number, you can make a special move, where you can move to the sum of digits in (Count the number of primes before the current prime + Difference between the next prime and current number) until it becomes a single-digit number. 
+
+3- If you make a special move, you can’t make another special move for the next ‘L’ moves. 
+For Example:
+You are given ‘N’ = 10, L = 2, and mines = [6], Here you can make the following moves for minimum path 1 -> 3 -> 5 (special move) -> 9 -> 10. Hence the answer is 4.
+Detailed explanation ( Input/output format, Notes, Images )
+Constraints:
+1 <= T <= 10
+1 <= M < N <= 10^5
+0 <= L <= 10
+
+It is guaranteed that the sum of 'N' and the sum of 'M' over all test cases doesn't exceed 10^5.
+Time Limit: 1 sec.
+Note:
+You do not need to print anything. It has already been taken care of. Just implement the function.
+Sample Input 1:
+2
+10 2 1
+6
+14 2 1
+8  
+Sample Output 1:
+4
+4
+Explanation:
+For the first test case, ‘N’ = 10, L = 2, and mines = [6], Here you can make the following moves for minimum path 1 -> 3 - >5(special move) -> 9->10. Hence the answer is 4.
+
+For the second test case, 'N' = 11, L = 2 and mines = [8], Here you can make the following moves for 1 -> 3-> 6 -> 7(special move) -> 11.
+Sample Input 2:
+2
+12 1 1
+10
+6 1 1
+4
+Sample Output 2:
+5
+2
