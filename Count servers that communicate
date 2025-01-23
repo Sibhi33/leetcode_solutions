@@ -1,0 +1,3 @@
+class Solution:
+    def countServers(self, g: List[List[int]]) -> int:
+        return sum(starmap(lambda i,j:g[i][j]*(p[i]+q[j]>2),product(range(len(p:=[*map(sum,g)])),range(len(q:=[*map(sum,zip(*g))])))))
